@@ -1,6 +1,9 @@
 package game
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestNumberWhenOne(t *testing.T) {
 	result := Play(1)
@@ -94,4 +97,17 @@ func BenchmarkOfPlay(b *testing.B) {
 	for index := 0; index < b.N; index++ {
 		Play(1)
 	}
+}
+
+func ExamplePlay() {
+	fmt.Println(Play(1))
+	fmt.Println(Play(3))
+	fmt.Println(Play(5))
+	fmt.Println(Play(15))
+
+	// Output:
+	// 1
+	// Fizz
+	// Buzz
+	// FizzBuzz
 }

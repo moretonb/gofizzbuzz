@@ -89,3 +89,9 @@ func TestFizzBuzzWhenThirty(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func BenchmarkOfPlay(b *testing.B) {
+	for index := 0; index < b.N; index++ {
+		Play(1)
+	}
+}

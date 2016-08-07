@@ -6,6 +6,8 @@ import (
 )
 
 func TestNumberWhenOne(t *testing.T) {
+	t.Parallel()
+
 	result := Play(1)
 	expected := "1"
 
@@ -17,6 +19,8 @@ func TestNumberWhenOne(t *testing.T) {
 }
 
 func TestNumberWhenTwo(t *testing.T) {
+	t.Parallel()
+
 	result := Play(2)
 	expected := "2"
 
@@ -28,6 +32,8 @@ func TestNumberWhenTwo(t *testing.T) {
 }
 
 func TestFizzWhenThree(t *testing.T) {
+	t.Parallel()
+
 	result := Play(3)
 	expected := "Fizz"
 
@@ -39,6 +45,8 @@ func TestFizzWhenThree(t *testing.T) {
 }
 
 func TestFizzWhenSix(t *testing.T) {
+	t.Parallel()
+
 	result := Play(6)
 	expected := "Fizz"
 
@@ -50,6 +58,8 @@ func TestFizzWhenSix(t *testing.T) {
 }
 
 func TestBuzzWhenFive(t *testing.T) {
+	t.Parallel()
+
 	result := Play(5)
 	expected := "Buzz"
 
@@ -61,6 +71,8 @@ func TestBuzzWhenFive(t *testing.T) {
 }
 
 func TestBuzzWhenTen(t *testing.T) {
+	t.Parallel()
+
 	result := Play(10)
 	expected := "Buzz"
 
@@ -72,6 +84,8 @@ func TestBuzzWhenTen(t *testing.T) {
 }
 
 func TestFizzBuzzWhenFifteen(t *testing.T) {
+	t.Parallel()
+
 	result := Play(15)
 	expected := "FizzBuzz"
 
@@ -83,6 +97,8 @@ func TestFizzBuzzWhenFifteen(t *testing.T) {
 }
 
 func TestFizzBuzzWhenThirty(t *testing.T) {
+	t.Parallel()
+
 	result := Play(30)
 	expected := "FizzBuzz"
 

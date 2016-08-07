@@ -2,110 +2,115 @@ package game
 
 import (
 	"fmt"
+	"os"
 	"testing"
 )
 
-func TestNumberWhenOne(t *testing.T) {
+func TestMain(m *testing.M) {
+	fmt.Println("Game tests are about to run")
+	result := m.Run()
+	fmt.Println("Game tests are done executing")
+
+	os.Exit(result)
+}
+
+var numberTable = []struct {
+	in  int
+	out string
+}{
+	{1, "1"},
+	{2, "2"},
+	{4, "4"},
+	{7, "7"},
+	{8, "8"},
+}
+
+func TestNumberWhenNotMatchingOtherRules(t *testing.T) {
 	t.Parallel()
 
-	result := Play(1)
-	expected := "1"
+	for _, entry := range numberTable {
+		result := Play(entry.in)
 
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
+		if result != entry.out {
+			t.Log("expected output ", entry.out)
+			t.Log("actual output ", result)
+			t.Fail()
+		}
 	}
 }
 
-func TestNumberWhenTwo(t *testing.T) {
+var fizzTable = []struct {
+	in int
+}{
+	{3},
+	{6},
+	{9},
+	{12},
+	{33},
+}
+
+func TestFizzWhenMultipleOfThree(t *testing.T) {
 	t.Parallel()
 
-	result := Play(2)
-	expected := "2"
+	for _, entry := range fizzTable {
+		result := Play(entry.in)
+		expected := "Fizz"
 
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
+		if result != expected {
+			t.Log("expected output ", expected)
+			t.Log("actual output ", result)
+			t.Fail()
+		}
 	}
 }
 
-func TestFizzWhenThree(t *testing.T) {
+var buzzTable = []struct {
+	in int
+}{
+	{5},
+	{10},
+	{20},
+	{25},
+	{95},
+}
+
+func TestBuzzWhenMultipleOfFive(t *testing.T) {
 	t.Parallel()
 
-	result := Play(3)
-	expected := "Fizz"
+	for _, entry := range buzzTable {
+		result := Play(entry.in)
+		expected := "Buzz"
 
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
+		if result != expected {
+			t.Log("expected output ", expected)
+			t.Log("actual output ", result)
+			t.Fail()
+		}
 	}
 }
 
-func TestFizzWhenSix(t *testing.T) {
-	t.Parallel()
-
-	result := Play(6)
-	expected := "Fizz"
-
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
-	}
+var fizzbuzzTable = []struct {
+	in int
+}{
+	{15},
+	{30},
+	{45},
+	{60},
+	{1500},
 }
 
-func TestBuzzWhenFive(t *testing.T) {
+func TestFizzBuzzWhenMultipleOfThreeAndFive(t *testing.T) {
 	t.Parallel()
 
-	result := Play(5)
-	expected := "Buzz"
+	for _, entry := range fizzbuzzTable {
+		result := Play(entry.in)
+		expected := "FizzBuzz"
 
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
-	}
-}
-
-func TestBuzzWhenTen(t *testing.T) {
-	t.Parallel()
-
-	result := Play(10)
-	expected := "Buzz"
-
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
-	}
-}
-
-func TestFizzBuzzWhenFifteen(t *testing.T) {
-	t.Parallel()
-
-	result := Play(15)
-	expected := "FizzBuzz"
-
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
-	}
-}
-
-func TestFizzBuzzWhenThirty(t *testing.T) {
-	t.Parallel()
-
-	result := Play(30)
-	expected := "FizzBuzz"
-
-	if result != expected {
-		t.Log("expected output ", expected)
-		t.Log("actual output ", result)
-		t.Fail()
+		if result != expected {
+			t.Log("expected output ", expected)
+			t.Log("actual output ", result)
+			t.Fail()
+		}
 	}
 }
 

@@ -3,9 +3,9 @@ package output
 import "fmt"
 
 func CreatePrinter() IPrinter {
-	return newPrinter(fmtWrapper)
+	return newPrinter(printLnWrapper)
 }
 
-func fmtWrapper(input string) {
+func printLnWrapper(input string) {
 	fmt.Println(input)
 }

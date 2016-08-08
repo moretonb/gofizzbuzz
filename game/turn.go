@@ -2,7 +2,7 @@ package game
 
 import "strconv"
 
-func Play(number int) string {
+func turn(number int) string {
 	if number%15 == 0 {
 		return "FizzBuzz"
 	}

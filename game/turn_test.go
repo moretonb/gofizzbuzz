@@ -2,17 +2,8 @@ package game
 
 import (
 	"fmt"
-	"os"
 	"testing"
 )
-
-func TestMain(m *testing.M) {
-	fmt.Println("Game tests are about to run")
-	result := m.Run()
-	fmt.Println("Game tests are done executing")
-
-	os.Exit(result)
-}
 
 var numberTable = []struct {
 	in  int
@@ -29,7 +20,7 @@ func TestNumberWhenNotMatchingOtherRules(t *testing.T) {
 	t.Parallel()
 
 	for _, entry := range numberTable {
-		result := Play(entry.in)
+		result := turn(entry.in)
 
 		if result != entry.out {
 			t.Log("expected output ", entry.out)
@@ -53,7 +44,7 @@ func TestFizzWhenMultipleOfThree(t *testing.T) {
 	t.Parallel()
 
 	for _, entry := range fizzTable {
-		result := Play(entry.in)
+		result := turn(entry.in)
 		expected := "Fizz"
 
 		if result != expected {
@@ -78,7 +69,7 @@ func TestBuzzWhenMultipleOfFive(t *testing.T) {
 	t.Parallel()
 
 	for _, entry := range buzzTable {
-		result := Play(entry.in)
+		result := turn(entry.in)
 		expected := "Buzz"
 
 		if result != expected {
@@ -103,7 +94,7 @@ func TestFizzBuzzWhenMultipleOfThreeAndFive(t *testing.T) {
 	t.Parallel()
 
 	for _, entry := range fizzbuzzTable {
-		result := Play(entry.in)
+		result := turn(entry.in)
 		expected := "FizzBuzz"
 
 		if result != expected {
@@ -114,17 +105,17 @@ func TestFizzBuzzWhenMultipleOfThreeAndFive(t *testing.T) {
 	}
 }
 
-func BenchmarkOfPlay(b *testing.B) {
+func BenchmarkOfTurn(b *testing.B) {
 	for index := 0; index < b.N; index++ {
-		Play(1)
+		turn(1)
 	}
 }
 
-func ExamplePlay() {
-	fmt.Println(Play(1))
-	fmt.Println(Play(3))
-	fmt.Println(Play(5))
-	fmt.Println(Play(15))
+func ExampleTurn() {
+	fmt.Println(turn(1))
+	fmt.Println(turn(3))
+	fmt.Println(turn(5))
+	fmt.Println(turn(15))
 
 	// Output:
 	// 1

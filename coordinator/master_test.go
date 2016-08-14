@@ -52,7 +52,7 @@ func mockPrinterCreator() output.IPrinter {
 type MockPrinter struct {
 }
 
-func (mo *MockPrinter) Print(results chan string, complete chan bool) {
+func (mo *MockPrinter) Print(results chan string, complete chan struct{}) {
 	printerCalled = true
 
 	close(complete)

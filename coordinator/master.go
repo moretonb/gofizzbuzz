@@ -19,7 +19,7 @@ func newMaster(grc gameRunnerCreator, pc printerCreator) *Master {
 
 func (m *Master) Start() {
 	gameResults := make(chan string)
-	complete := make(chan bool)
+	complete := make(chan struct{})
 
 	runner := m.createGameRunner()
 	printer := m.createPrinter()

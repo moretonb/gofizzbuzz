@@ -9,14 +9,13 @@ var printer = newPrinter(mockOutputPrinter)
 var printedItems = make([]string, 3)
 var currentPrintedIndex = 0
 var inputChannel = make(chan string)
-var complete = make(chan bool)
+var complete = make(chan struct{})
 var input = []string{"1", "2", "badger"}
-var done = false
 
 func TestMain(m *testing.M) {
 	go steamInputToPrint()
 	go printer.Print(inputChannel, complete)
-	done = <-complete
+	<-complete
 
 	result := m.Run()
 	os.Exit(result)
@@ -31,14 +30,6 @@ func TestWhenPrintThenAllItemsArePrintedInTheExpectedOrder(t *testing.T) {
 			t.Log("actual output ", result)
 			t.Fail()
 		}
-	}
-}
-
-func TestWhenPrintThenCompleteIsSentTrue(t *testing.T) {
-	t.Parallel()
-
-	if !done {
-		t.Error("expected complete channel to be called with true")
 	}
 }
 
